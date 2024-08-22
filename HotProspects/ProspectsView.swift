@@ -6,10 +6,12 @@
 //
 import SwiftData
 import SwiftUI
+import CodeScanner
 
 struct ProspectsView: View {
     @Environment(\.modelContext) var modelContext
     @Query(sort: \Prospect.name) var prospects: [Prospect]
+    @State private var isShowingScanner = false
     
     enum FilterType {
         case none, contacted, uncontacted
@@ -38,13 +40,15 @@ struct ProspectsView: View {
                         .foregroundStyle(.secondary)
                 }
             }
-                .navigationTitle(title)
-                .toolbar {
-                    Button("Scan", systemImage: "qrcode.viewfinder") {
-                        let prospect = Prospect(name: "Adam Elfsborg", email: "adam.elfsborg@hotmail.com", isContacted: false)
-                        modelContext.insert(prospect)
-                    }
+            .navigationTitle(title)
+            .toolbar {
+                Button("Scan", systemImage: "qrcode.viewfinder") {
+                    isShowingScanner = true
                 }
+            }
+            .sheet(isPresented: $isShowingScanner) {
+                CodeScannerView(codeTypes: [.qr], simulatedData: "Adam Elfsborg\nadam.elfsborg@hotmail.com", completion: handleScan)
+            }
         }
     }
     
@@ -56,6 +60,21 @@ struct ProspectsView: View {
             _prospects = Query(filter: #Predicate {
                 $0.isContacted == showContactedOnly
             }, sort: [SortDescriptor(\Prospect.name)])
+        }
+        
+    }
+    
+    func handleScan(result: Result<ScanResult, ScanError>) {
+        isShowingScanner = false
+        
+        switch result {
+        case .success(let success):
+            let details = success.string.components(separatedBy: "\n")
+            guard details.count == 2 else { return }
+            let person = Prospect(name: details[0], email: details[1], isContacted: false)
+            modelContext.insert(person)
+        case .failure(let failure):
+            print("Scanning failed: \(failure.localizedDescription)")
         }
         
     }
