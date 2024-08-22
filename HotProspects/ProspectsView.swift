@@ -79,7 +79,12 @@ struct ProspectsView: View {
                 }
             }
             .sheet(isPresented: $isShowingScanner) {
-                CodeScannerView(codeTypes: [.qr], simulatedData: "Adam Elfsborg\nadam.elfsborg@hotmail.com", completion: handleScan)
+                let names = ["Steve Jobs": "steve.jobs@apple.com", "Steve Wozniak": "steve.wozniak@apple.com", "Tim Cook": "tim.cook@apple.com", "Craig Federighi": "craig.federighi@apple.com", "Carol Surface": "carol.surface@apple.com"]
+                
+                let name = names.randomElement()!
+                let string = "\(name.key)\n\(name.value)"
+                
+                CodeScannerView(codeTypes: [.qr], simulatedData: string, completion: handleScan)
             }
         }
     }
