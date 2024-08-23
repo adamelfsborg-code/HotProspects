@@ -16,6 +16,7 @@
 		66768F2F2C737E970000E348 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66768F2E2C737E970000E348 /* Assets.xcassets */; };
 		66768F322C737E970000E348 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66768F312C737E970000E348 /* Preview Assets.xcassets */; };
 		669162E32C7888E600B64978 /* EditProspectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669162E22C7888E600B64978 /* EditProspectView.swift */; };
+		669162E52C7894AE00B64978 /* ProspectsListingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669162E42C7894AE00B64978 /* ProspectsListingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		66768F2E2C737E970000E348 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		66768F312C737E970000E348 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		669162E22C7888E600B64978 /* EditProspectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProspectView.swift; sourceTree = "<group>"; };
+		669162E42C7894AE00B64978 /* ProspectsListingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProspectsListingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 				66768F2A2C737E960000E348 /* HotProspectsApp.swift */,
 				66768F2C2C737E960000E348 /* ContentView.swift */,
 				663E600C2C77178800D22045 /* Prospect.swift */,
+				669162E42C7894AE00B64978 /* ProspectsListingView.swift */,
 				663E60082C77160100D22045 /* ProspectsView.swift */,
 				669162E22C7888E600B64978 /* EditProspectView.swift */,
 				663E600A2C77160900D22045 /* MeView.swift */,
@@ -162,6 +165,7 @@
 				663E60092C77160100D22045 /* ProspectsView.swift in Sources */,
 				66768F2D2C737E960000E348 /* ContentView.swift in Sources */,
 				669162E32C7888E600B64978 /* EditProspectView.swift in Sources */,
+				669162E52C7894AE00B64978 /* ProspectsListingView.swift in Sources */,
 				66768F2B2C737E960000E348 /* HotProspectsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
