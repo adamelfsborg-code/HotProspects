@@ -20,6 +20,8 @@ struct ProspectsView: View {
     }
     
     let filter: FilterType
+    let contactedIcon = "person.crop.circle.fill.badge.checkmark"
+    let uncontactedIcon = "person.crop.circle.badge.xmark"
     
     var title: String {
         switch filter {
@@ -35,11 +37,23 @@ struct ProspectsView: View {
     var body: some View {
         NavigationStack {
             List(prospects, selection: $selection) { prospect in
-                VStack(alignment: .leading) {
-                    Text(prospect.name)
-                        .font(.headline)
-                    Text(prospect.email)
-                        .foregroundStyle(.secondary)
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text(prospect.name)
+                            .font(.headline)
+                        Text(prospect.email)
+                            .foregroundStyle(.secondary)
+                    }
+                    Spacer()
+                    if filter == .none {
+                        if prospect.isContacted {
+                            Image(systemName: contactedIcon)
+                                .foregroundColor(.green)
+                        } else {
+                            Image(systemName: uncontactedIcon)
+                                .foregroundColor(.secondary)
+                        }
+                    }
                 }
                 .swipeActions {
                     Button("Delete", systemImage: "trash", role: .destructive) {
@@ -47,13 +61,13 @@ struct ProspectsView: View {
                     }
                     
                     if prospect.isContacted {
-                        Button("Mark Uncontacted", systemImage: "person.crop.circle.badge.xmark") {
+                        Button("Mark Uncontacted", systemImage: uncontactedIcon) {
                             prospect.isContacted.toggle()
                         }
                         .tint(.blue)
                     } else {
                         
-                        Button("Mark Contacted", systemImage: "person.crop.circle.fill.badge.checkmark") {
+                        Button("Mark Contacted", systemImage: contactedIcon) {
                             prospect.isContacted.toggle()
                         }
                         .tint(.green)
