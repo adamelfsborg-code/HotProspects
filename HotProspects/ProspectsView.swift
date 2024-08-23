@@ -37,21 +37,25 @@ struct ProspectsView: View {
     var body: some View {
         NavigationStack {
             List(prospects, selection: $selection) { prospect in
-                HStack {
-                    VStack(alignment: .leading) {
-                        Text(prospect.name)
-                            .font(.headline)
-                        Text(prospect.email)
-                            .foregroundStyle(.secondary)
-                    }
-                    Spacer()
-                    if filter == .none {
-                        if prospect.isContacted {
-                            Image(systemName: contactedIcon)
-                                .foregroundColor(.green)
-                        } else {
-                            Image(systemName: uncontactedIcon)
-                                .foregroundColor(.secondary)
+                NavigationLink {
+                   EditProspectView(prospect: prospect)
+                } label: {
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text(prospect.name)
+                                .font(.headline)
+                            Text(prospect.email)
+                                .foregroundStyle(.secondary)
+                        }
+                        Spacer()
+                        if filter == .none {
+                            if prospect.isContacted {
+                                Image(systemName: contactedIcon)
+                                    .foregroundColor(.green)
+                            } else {
+                                Image(systemName: uncontactedIcon)
+                                    .foregroundColor(.secondary)
+                            }
                         }
                     }
                 }
